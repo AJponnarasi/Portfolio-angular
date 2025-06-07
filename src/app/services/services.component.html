@@ -1,0 +1,26 @@
+<div class="md:container px-5 py-14">
+    <h2 class="title" data-aos="fade-down">My Expertise</h2>
+    <h4 class="subtitle" data-aos="fade-down">What I Bring to Your Project</h4>
+    <br>
+    <div class="flex gap-5 justify-between flex-wrap group">
+        <div data-aos="fade-up" [attr.data-aos-delay]="service.delay" class="min-w-[14rem] cursor-pointer border-2 border-slate-200 rounded-xl text-center bg-bg_light_primary p-6 flex-1  transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-4 hover:bg-white hover:shadow-2xl cursor-pointer overflow-hidden"
+            *ngFor="let service of SERVICE_LIST; trackBy: trackByServiceId"
+            (mouseenter)="onCardHover(service.id)"
+            (mouseleave)="onCardLeave(service.id)">
+            <div class="w-20 h-20 bg-[linear-gradient(90deg,_#B6CCF5_0.48%,_#D5E3F1_100%)]  mx-auto mb-6  rounded-2xl flex items-center justify-center transition-all duration-300 relative z-10" [class.rotate-y-180]="hoveredCard === service.id" [class.bg-gradient-to-r]="hoveredCard === service.id">
+                <img [src]="service.icon" [alt]="service.title" class="text-white w-10 h-10" />
+            </div>
+
+            <h6 class="my-3">{{service.title}}</h6>
+            <p class="leading-relaxed">{{service.description}}</p>
+            <div class="flex flex-wrap justify-center gap-3 mt-5">
+                <span 
+                  *ngFor="let tech of service.techStack" 
+                  class="tech-tag rounded-full px-3 py-1 text-sm text-blue-900 font-medium">
+                  {{ tech }}
+                </span>
+              </div>
+        </div>
+        
+    </div>
+</div>
