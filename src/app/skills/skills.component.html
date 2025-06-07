@@ -1,0 +1,46 @@
+<div class="md:container px-5  py-14">
+    <h2 class="title" data-aos="fade-down">Skills</h2>
+    <h4 class="subtitle" data-aos="fade-down">MY TOP SKILLS</h4>
+    <br>
+    <div class="flex flex-wrap gap-4 justify-center">
+        <div data-aos="fade-up" data-aos-delay="0" class="bg-white sm:cursor-pointer 
+        relative group w-full flex items-center
+        gap-5 p-5 max-w-sm rounded-md border-2 border-slate-200" *ngFor="let skill of SKILLS_LIST">
+            <div>
+                <img [src]="skill.icon" class="w-10 group-hover:scale-125 duration-200" [alt]="skill.id">
+            </div>
+            <div>
+                <h6>{{skill.title}}</h6>
+                <p class="italic">{{skill.desc}}</p>
+                <div class="text-xl absolute top-3 right-3" (click)="toggleSkillDetails(skill.id)">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
+                        width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div
+  *ngIf="isModalOpen"
+  class="fixed inset-0 bg-opacity-50 flex justify-center items-center z-50  modal-overlay"
+>
+  <!-- Modal Content -->
+  <div class="bg-white p-6 rounded-lg w-80 relative modal-style">
+    <div class="flex items-center gap-2">
+        <img class="h-10" [src]="selectedSkill.icon" alt="selectedSkill.id">
+        <h6>{{selectedSkill.title}}</h6>
+    </div>
+    <br>
+    <ul class="list-decimal px-4 font-Poppins sm:text-sm text-xs !leading-7">
+        <li *ngFor="let keySkill of selectedSkill.keySkills">{{ keySkill }}</li>
+    </ul>
+    <br>
+    <div class="flex justify-end">
+        <button class="btn cursor-pointer" (click)="closeModal()">Close</button>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,97 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import 'aos/dist/aos.css';
+
+:root {
+  --primary-color: #1E40AF;
+  --accent-color: #F472B6;
+  --neutral-color: #374151;
+  --text-color: #06223f;
+  --bg-dark_primary : #06223f;
+  --bg_light_primary: #f5f9fd;
+  --text-light-color: #b7c5d3;
+  --text-dark-color: #253d57
+}
+
+
+@font-face {
+  font-family: 'Paprika';
+  src: url('assets/fonts/Paprika/Paprika-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inria Serif';
+  src: url('assets/fonts/Inria_Serif/InriaSerif-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inria Serif';
+  src: url('assets/fonts/Inria_Serif/InriaSerif-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6, p, span{
+  color: var(--text-color);
+}
+.text-dark_primary{
+  color: var(--text-color);
+}
+.bg-dark_primary{
+  background-color : var(--bg-dark_primary)
+}
+
+.bg-bg_light_primary{
+  background-color: var(--bg_light_primary)
+}
+
+.btn {
+  border-radius: .375rem .375rem 1.5rem;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(6 34 63 / var(--tw-border-opacity));
+  padding: .5rem 2.25rem;
+  font-weight: 500;
+}
+
+.md\:container{
+  padding-left: 64px;
+  padding-right: 64px;
+  max-width: 1280px;
+}
+
+.title {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-family: "Inria Serif";
+}
+.subtitle{
+  color : var(--text-light-color);
+  font-family: Paprika;
+  font-size: 2.25rem;
+  line-height: 1.625;
+}
+h6{
+  font-family: Paprika;
+  font-weight: 700;
+  line-height: 2rem;
+  color: var(--text-dark-color);
+}
