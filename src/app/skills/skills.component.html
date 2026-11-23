@@ -14,12 +14,12 @@
                 <i class="fas fa-arrow-right arrow"></i>
             </div>
             <h3 class="card-title mt-4">{{ skill.title }}</h3>
-            <p class="text-sm text-slate-500 italic">{{ skill.desc }}</p>
+            <p class="text-sm text-muted italic">{{ skill.desc }}</p>
 
             <div class="mt-4">
                 <div class="flex justify-between text-xs font-Poppins mb-1.5">
-                    <span class="!text-slate-500 capitalize">{{ skill.experienceLevel }}</span>
-                    <span class="!text-slate-400">{{ levelPercent[skill.experienceLevel] }}%</span>
+                    <span class="text-muted capitalize">{{ skill.experienceLevel }}</span>
+                    <span class="text-muted">{{ levelPercent[skill.experienceLevel] }}%</span>
                 </div>
                 <div class="meter">
                     <div class="meter-fill" [style.width.%]="levelPercent[skill.experienceLevel]"></div>
@@ -41,7 +41,7 @@
                 <span class="level-chip">{{ selectedSkill.experienceLevel }}</span>
             </div>
         </div>
-        <p id="skill-dialog-desc" class="text-sm text-slate-600 mt-4 font-Poppins">{{ selectedSkill.description }}</p>
+        <p id="skill-dialog-desc" class="text-sm text-body mt-4 font-Poppins">{{ selectedSkill.description }}</p>
         <ul class="key-list mt-4">
             <li *ngFor="let keySkill of selectedSkill.keySkills">
                 <i class="fas fa-circle-check"></i> {{ keySkill }}

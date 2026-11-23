@@ -63,7 +63,7 @@
 
 .submit-btn {
     background: #fff;
-    color: var(--text-color);
+    color: var(--navy);
     border-color: #fff !important;
 
     &:hover {
@@ -100,7 +100,7 @@
     display: grid;
     place-items: center;
     border-radius: .8rem;
-    color: var(--text-color);
+    color: var(--navy);
     background: linear-gradient(135deg, #B6CCF5, #D5E3F1);
 }
 
@@ -121,4 +121,50 @@
     color: #fff;
     margin-top: .15rem;
     word-break: break-word;
+}
+
+/* nested spans (e.g. a no-wrap PIN code) keep the white text; the global "span" colour rule would turn them navy */
+.info-value span {
+    color: inherit;
+}
+
+.honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.submit-btn:disabled {
+    opacity: .7;
+    cursor: progress;
+    transform: none;
+}
+
+.form-status {
+    font-family: Poppins;
+    font-size: .85rem;
+    line-height: 1.5;
+    min-height: 1.5em;
+
+    span {
+        display: inline-flex;
+        align-items: baseline;
+        gap: .4rem;
+        flex-wrap: wrap;
+    }
+
+    .ok {
+        color: #86efac;
+    }
+
+    .err {
+        color: #fca5a5;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: underline;
+    }
 }

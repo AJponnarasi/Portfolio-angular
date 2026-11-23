@@ -15,7 +15,7 @@
     place-items: center;
     border-radius: 50%;
     background: linear-gradient(135deg, #B6CCF5, #D5E3F1);
-    color: var(--text-color);
+    color: var(--navy);
     box-shadow: 0 10px 25px -8px rgb(0 0 0 / .5);
     transition: transform .25s ease;
 
@@ -55,7 +55,7 @@
 
     &:hover {
         background: #fff;
-        color: var(--text-color);
+        color: var(--navy);
         transform: translateY(-3px);
     }
 }

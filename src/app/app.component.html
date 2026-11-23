@@ -18,6 +18,12 @@
             <a href="#contact" class="btn btn-solid header-cta">Let's Talk</a>
         </div>
 
+        <button type="button" class="theme-toggle" (click)="theme.toggle()"
+            [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'"
+            [attr.title]="theme.theme() === 'dark' ? 'Light mode' : 'Dark mode'">
+            <i class="fas" [ngClass]="theme.theme() === 'dark' ? 'fa-sun' : 'fa-moon'" aria-hidden="true"></i>
+        </button>
+
         <button class="menu-toggle" (click)="toggleMenu()" [attr.aria-expanded]="isMenuVisible"
             aria-label="Toggle navigation">
             <i class="fas" [ngClass]="isMenuVisible ? 'fa-xmark' : 'fa-bars-staggered'"></i>

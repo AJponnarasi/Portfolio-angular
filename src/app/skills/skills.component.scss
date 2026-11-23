@@ -1,12 +1,12 @@
 .section-lead {
     font-family: Poppins;
-    color: #64748b;
+    color: var(--text-muted);
     max-width: 36rem;
 }
 
 .skill-card {
-    background: #fff;
-    border: 1px solid #e2e8f0;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 1rem;
     padding: 1.4rem;
     cursor: pointer;
@@ -30,7 +30,7 @@
     }
 
     .arrow {
-        color: #94a3b8;
+        color: var(--text-faint);
         transition: transform .25s ease, color .25s ease;
     }
 
@@ -47,13 +47,13 @@
     place-items: center;
     border-radius: .9rem;
     background: var(--bg_light_primary);
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
 }
 
 .meter {
     height: 6px;
     border-radius: 999px;
-    background: #e8eef7;
+    background: var(--meter-track);
     overflow: hidden;
 }
 
@@ -70,19 +70,20 @@
     display: grid;
     place-items: center;
     padding: 1rem;
-    background-color: rgb(6 34 63 / .35);
+    background-color: var(--overlay);
     backdrop-filter: blur(6px);
     animation: fade .2s ease;
 }
 
 .modal-style {
     position: relative;
-    background: #fff;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 1.25rem;
     padding: 1.75rem;
     max-width: 26rem;
     width: 100%;
-    box-shadow: 0 30px 60px -20px rgb(6 34 63 / .45);
+    box-shadow: 0 30px 60px -20px rgb(var(--shadow-rgb) / .45);
     animation: pop .25s ease;
 }
 
@@ -93,12 +94,12 @@
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    background: #f1f5f9;
+    background: var(--close-bg);
     color: var(--text-color);
     cursor: pointer;
 
     &:hover {
-        background: #e2e8f0;
+        background: var(--close-bg-hover);
     }
 }
 
@@ -111,7 +112,7 @@
     text-transform: uppercase;
     letter-spacing: .08em;
     color: var(--primary-color);
-    background: #dbe6fb;
+    background: var(--accent-soft);
     padding: .15rem .6rem;
     border-radius: 999px;
 }
@@ -122,7 +123,7 @@
     gap: .65rem;
     font-family: Poppins;
     font-size: .875rem;
-    color: #334155;
+    color: var(--text-strong-list);
 
     li {
         display: flex;

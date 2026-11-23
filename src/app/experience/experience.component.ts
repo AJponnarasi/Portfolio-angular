@@ -72,7 +72,7 @@ export class ExperienceComponent {
       start_date: 'Jul 2023',
       end_date: 'Feb 2025',
       work_type: 'Full-time',
-      location: 'Hyderabad, Telangana, India'
+      location: 'Chennai, India'
     },
     {
       company_name: 'Boodskap',
@@ -82,7 +82,7 @@ export class ExperienceComponent {
       start_date: 'Sep 2019',
       end_date: 'Jun 2023',
       work_type: 'Full-time',
-      location: 'Hyderabad, Telangana, India'
+      location: 'Chennai, India'
     }
   ] as Experience[]).map(e => ({ ...e, duration: calculateDuration(e.start_date, e.end_date) }));
 }

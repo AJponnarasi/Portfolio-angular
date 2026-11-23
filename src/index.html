@@ -8,7 +8,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
     content="Ponnarasi, Front End Developer with 7+ years of experience building scalable, high-performance web applications with Angular and TypeScript.">
-  <meta name="theme-color" content="#06223f">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Apply the saved (or system) colour theme before first paint to avoid a flash -->
+  <script>
+    (function () {
+      var t = 'light';
+      try {
+        var s = localStorage.getItem('theme');
+        t = s === 'dark' || s === 'light' ? s
+          : (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch (e) { }
+      document.documentElement.setAttribute('data-theme', t);
+      if (t === 'dark') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0b1626');
+    })();
+  </script>
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ponnarasi | Front End Developer">
   <meta property="og:description"
