@@ -22,7 +22,7 @@ export interface Skill {
   styleUrl: './skills.component.scss'
 })
 export class SkillsComponent {
-  isModalOpen:boolean = false;
+  isModalOpen: boolean = false;
   selectedSkill: any;
   SKILLS_LIST: Skill[] = [
     {
@@ -57,6 +57,23 @@ export class SkillsComponent {
         'Integration with modern frameworks'
       ],
       experienceLevel: 'advanced',
+      expanded: false
+    },
+    {
+      id: 'jest',
+      title: 'Jest',
+      desc: 'JavaScript Testing Framework',
+      description: 'Delightful unit testing framework for JavaScript and TypeScript projects',
+      icon: 'assets/images/jest.png',
+      colorClass: 'jest',
+      keySkills: [
+        'Writing unit and integration tests',
+        'Mocking functions and modules',
+        'Snapshot testing',
+        'Code coverage reporting',
+        'Test-driven development (TDD) practices'
+      ],
+      experienceLevel: 'intermediate',
       expanded: false
     },
     {
@@ -113,7 +130,7 @@ export class SkillsComponent {
     {
       id: 'jquery',
       title: 'jQuery',
-      desc:'Simplified JavaScript',
+      desc: 'Simplified JavaScript',
       description: 'DOM manipulation, event handling, and AJAX requests',
       icon: 'assets/images/jquery.png',
       colorClass: 'jquery',
@@ -154,10 +171,10 @@ export class SkillsComponent {
     this.isModalOpen = !this.isModalOpen
     // Toggle current skill
     this.selectedSkill = this.SKILLS_LIST.find(s => s.id === skillId);
-    
+
   }
 
-  closeModal(){
+  closeModal() {
     this.isModalOpen = false
   }
 

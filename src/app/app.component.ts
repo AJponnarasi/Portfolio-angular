@@ -5,10 +5,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SkillsComponent } from "./skills/skills.component";
 import { ServicesComponent } from "./services/services.component";
+import { ExperienceComponent } from "./experience/experience.component";
+import { ProjectComponent } from "./project/project.component";
+import { ContactComponent } from "./contact/contact.component";
+import { FooterComponent } from "./footer/footer.component";
 
 @Component({
   selector: 'app-root',
-  imports: [HomeComponent, CommonModule, SkillsComponent, ServicesComponent],
+  imports: [HomeComponent, CommonModule, SkillsComponent, ServicesComponent, ExperienceComponent, ProjectComponent, ContactComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

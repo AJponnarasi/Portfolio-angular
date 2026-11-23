@@ -1,0 +1,26 @@
+::ng-deep .splide__arrow--prev {
+    left: -3rem !important;
+}
+
+::ng-deep .splide__arrow--next {
+    right: -3rem !important;
+}
+
+::ng-deep .splide__arrow,
+::ng-deep .splide__pagination__page {
+    background: linear-gradient(90deg,
+            #B6CCF5 0.48%,
+            #D5E3F1 100%);
+}
+
+::ng-deep .splide__pagination {
+    bottom: -1.5em;
+}
+
+::ng-deep .splide__pagination__page.is-active {
+    background-color: #06223f;
+}
+
+.border-blue {
+    border: 1px solid #06223f;
+}

@@ -1,0 +1,16 @@
+<div class="md:container px-5  py-14">
+    <h2 class="title" data-aos="fade-down">My Journey</h2>
+    <h4 class="subtitle" data-aos="fade-down">My Career Overview</h4>
+    <br>
+    <div class="flex flex-col px-5 gap-4 justify-center">
+       <div class="flex flex-wrap gap-5" *ngFor="let experience of EXPERIENCE_LIST">
+         <img [src]="experience.image" class="w-16 h-16"  [alt]="experience.company_name">
+         <div>
+            <h6>{{experience.role}}</h6>
+            <p>{{experience.company_name}} . {{experience.work_type}}</p>
+            <p class="text-muted text-sm">{{experience.time_period}} . {{calculateDuration(experience.start_date,experience.end_date)}} </p>
+            <p class="text-muted text-sm">{{experience.location}} . </p>
+         </div>
+       </div>
+    </div>
+</div>
