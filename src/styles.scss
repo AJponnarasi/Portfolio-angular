@@ -1,8 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-@import "tailwindcss";
-@import 'aos/dist/aos.css';
+/* Global styles. Tailwind is loaded from src/tailwind.css, and AOS/Splide/Font Awesome CSS from angular.json "styles". */
 
 :root {
+  --subtitle-on-dark: #b7c5d3;
   --primary-color: #1E40AF;
   --accent-color: #F472B6;
   --neutral-color: #374151;
@@ -19,6 +18,7 @@
   src: url('assets/fonts/Paprika/Paprika-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -26,6 +26,7 @@
   src: url('assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -33,6 +34,7 @@
   src: url('assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -40,6 +42,7 @@
   src: url('assets/fonts/Inria_Serif/InriaSerif-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -47,6 +50,7 @@
   src: url('assets/fonts/Inria_Serif/InriaSerif-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 h1,
@@ -94,12 +98,14 @@ span {
 }
 
 .subtitle {
-  color: var(--text-light-color);
+  /* 3.5:1 on light backgrounds (WCAG AA for large text) */
+  color: #6b82a1;
   font-family: Paprika;
   font-size: 2.25rem;
   line-height: 1.625;
 }
 
+.card-title,
 h6,
 h5 {
   font-family: Paprika;
@@ -122,6 +128,136 @@ h5 {
 
 @media (min-width: 768px) {
   h4 {
+    font-size: 2.25rem;
+  }
+}
+/* ---------- Enhancements ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Poppins, sans-serif;
+  color: var(--text-color);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+::selection {
+  background: #b6ccf5;
+  color: var(--text-color);
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: Poppins;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+}
+
+.section-eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #1E40AF, #B6CCF5);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease, color .25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -10px rgb(6 34 63 / .45);
+}
+
+.btn-solid {
+  background-color: var(--bg-dark_primary);
+  color: #fff;
+}
+
+.btn-solid:hover {
+  background-color: #0b3463;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+.btn-outline:hover {
+  background-color: var(--bg-dark_primary);
+  color: #fff;
+}
+
+.card-lift {
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -20px rgb(30 64 175 / .35);
+  border-color: #b6ccf5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* Section headings are <h2 class="subtitle">; keep their size consistent everywhere */
+.subtitle {
+  font-weight: 400;
+}
+
+.subtitle-on-dark {
+  color: var(--subtitle-on-dark);
+}
+
+.eyebrow-on-dark {
+  color: #93c5fd;
+}
+
+.card-title {
+  font-size: 1rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (min-width: 768px) {
+  h2.subtitle {
     font-size: 2.25rem;
   }
 }

@@ -34,6 +34,7 @@
             ],
             "styles": [
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "src/tailwind.css",
               "src/styles.scss",
               "node_modules/aos/dist/aos.css",
               "node_modules/@splidejs/splide/dist/css/splide.min.css"
@@ -55,8 +56,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "6kB",
+                  "maximumError": "10kB"
                 }
               ],
               "outputHashing": "all"
@@ -76,7 +77,8 @@
               "buildTarget": "portfolio:build:production"
             },
             "development": {
-              "buildTarget": "portfolio:build:development"
+              "buildTarget": "portfolio:build:development",
+              "hmr": false
             }
           },
           "defaultConfiguration": "development"
@@ -87,6 +89,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "builderMode": "application",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -102,6 +105,7 @@
             ],
             "styles": [
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "src/tailwind.css",
               "src/styles.scss",
               "node_modules/aos/dist/aos.css",
               "node_modules/@splidejs/splide/dist/css/splide.min.css"

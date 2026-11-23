@@ -1,49 +1,64 @@
-<div class="md:container px-5 py-14">
-    <h2 class="title !text-white" data-aos="fade-down">Contect Me</h2>
-    <h4 class="subtitle" data-aos="fade-down">GET IN TOUCH</h4>
-    <br>
-    <div class="flex gap-10 md:flex-row flex-col">
-        <form data-aos="fade-up" class="flex-1 flex flex-col gap-5"
-            action="https://submit-form.com/vtcoKsHLNuIfSsHeThxtd" target="blank"><input type="text" name="from_name"
-                placeholder="Name" required="" class="border border-slate-600 p-3 rounded"><input type="email"
-                name="user_email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" placeholder="Email Id"
-                required="" class="border border-slate-600 p-3 rounded"><textarea name="message" placeholder="Message"
-                class="border border-slate-600 p-3 rounded h-44" required=""></textarea><button class="btn self-start
-        bg-white text-dark_primary">Submit</button></form>
-        <div class="flex-1 flex flex-col gap-5">
-            <div data-aos="fade-down" data-aos-delay="0" class="flex items-center gap-2">
-                <h4 class="text-white">
-                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
-                        width="1em" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M23,20 L23,6 L12,15 L1,6 L1,20 L23,20 Z M12,12 L22,4 L2,4 L12,12 Z"></path>
-                    </svg>
-                </h4><a class="font-Poppins" href="mailto:ajpkponnarasi6@gmail.com"
-                    target="_blank">ajpkponnarasi6&#64;gmail.com </a>
+<div class="md:container mx-auto px-5 py-20 relative overflow-hidden">
+    <div class="glow"></div>
+
+    <span class="section-eyebrow eyebrow-on-dark" data-aos="fade-down">Contact Me</span>
+    <h2 class="subtitle subtitle-on-dark" data-aos="fade-down">GET IN TOUCH</h2>
+    <p class="lead" data-aos="fade-down">
+        Have a project in mind or an opportunity to discuss? My inbox is always open — I'll get back to you soon.
+    </p>
+
+    <div class="grid gap-10 md:grid-cols-5 mt-10 relative">
+        <form data-aos="fade-up" class="md:col-span-3 form-card"
+            action="https://submit-form.com/vtcoKsHLNuIfSsHeThxtd" target="_blank">
+            <div class="grid sm:grid-cols-2 gap-4">
+                <label class="field">
+                    <span>Name</span>
+                    <input type="text" name="from_name" placeholder="Your name" required>
+                </label>
+                <label class="field">
+                    <span>Email</span>
+                    <input type="email" name="user_email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                        placeholder="you@example.com" required>
+                </label>
             </div>
-            <div data-aos="fade-down" data-aos-delay="430" class="flex items-center gap-2">
-                <h4 class="text-white"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                        viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="none" d="M0 0h24v24H0z"></path>
-                        <path
-                            d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z">
-                        </path>
-                    </svg></h4><a class="font-Poppins" href="tel:9344495735" target="_blank">+91
-                    9344495735</a>
-            </div>
-            <div data-aos="fade-down" data-aos-delay="860" class="flex items-center gap-2">
-                <h4 class="text-white">
-                    <i class="fas fa-location-dot"></i>
-                </h4>
-                <a href="javascript:void(0)" class="font-Poppins">
-                    18-7-16(4),
-                    <br>
-                    Kanniyamman Kovil St,
-                    <br>
-                    Surandai-627859,
-                    <br>
-                    Tenkasi
-                </a>
+            <label class="field">
+                <span>Message</span>
+                <textarea name="message" placeholder="Tell me about your project..." rows="6" required></textarea>
+            </label>
+            <button class="btn submit-btn self-start">
+                Send Message <i class="fas fa-paper-plane text-sm"></i>
+            </button>
+        </form>
+
+        <div class="md:col-span-2 flex flex-col gap-4">
+            <a data-aos="fade-left" data-aos-delay="0" class="info-card" href="mailto:ajpkponnarasi6@gmail.com">
+                <span class="info-icon"><i class="fas fa-envelope"></i></span>
+                <div>
+                    <span class="info-label">Email</span>
+                    <span class="info-value">ajpkponnarasi6&#64;gmail.com</span>
+                </div>
+            </a>
+            <a data-aos="fade-left" data-aos-delay="150" class="info-card" href="tel:+919344495735">
+                <span class="info-icon"><i class="fas fa-phone"></i></span>
+                <div>
+                    <span class="info-label">Phone</span>
+                    <span class="info-value">+91 93444 95735</span>
+                </div>
+            </a>
+            <a *ngIf="resume.available()" [href]="resume.url" [attr.download]="resume.fileName"
+                data-aos="fade-left" data-aos-delay="300" class="info-card resume-card">
+                <span class="info-icon"><i class="fas fa-file-arrow-down"></i></span>
+                <div>
+                    <span class="info-label">Resume</span>
+                    <span class="info-value">Download my CV (PDF)</span>
+                </div>
+            </a>
+            <div data-aos="fade-left" data-aos-delay="450" class="info-card">
+                <span class="info-icon"><i class="fas fa-location-dot"></i></span>
+                <div>
+                    <span class="info-label">Address</span>
+                    <span class="info-value">18-7-16(4), Kanniyamman Kovil St,<br>Surandai-627859, Tenkasi</span>
+                </div>
             </div>
         </div>
     </div>

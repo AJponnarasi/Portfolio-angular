@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
-import AOS from 'aos';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ResumeService } from '../shared/resume.service';
 
 @Component({
   selector: 'app-contact',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
 export class ContactComponent {
-  ngAfterViewInit() {
-    AOS.refresh();
-  }
+  readonly resume = inject(ResumeService);
 }

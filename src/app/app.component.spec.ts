@@ -1,29 +1,135 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideFakeResume } from './shared/resume.testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let app: AppComponent;
+  let el: HTMLElement;
+
+  let resumeFake: ReturnType<typeof provideFakeResume>;
+
   beforeEach(async () => {
+    resumeFake = provideFakeResume(false);
     await TestBed.configureTestingModule({
       imports: [AppComponent],
+      providers: [resumeFake.provider],
     }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
+    el = fixture.nativeElement;
+    fixture.detectChanges();
   });
 
+  // Global styles set `scroll-behavior: smooth`; tests need the scroll to happen immediately
+  const scrollTo = (top: number) => window.scrollTo({ top, behavior: 'instant' });
+
+  afterEach(() => scrollTo(0));
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'portfolio' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('portfolio');
+  it('should render every page section with a matching id', () => {
+    const ids = Array.from(el.querySelectorAll('main > section')).map(s => s.id);
+    expect(ids).toEqual(['home', 'skills', 'services', 'experience', 'projects', 'contact']);
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it('should use one h1 and an h2 heading in every content section', () => {
+    expect(el.querySelectorAll('h1').length).toBe(1);
+    for (const id of ['skills', 'services', 'experience', 'projects', 'contact']) {
+      expect(el.querySelector(`#${id} h2`)).withContext(id).not.toBeNull();
+    }
+    expect(el.querySelectorAll('h4, h5, h6').length).toBe(0);
+  });
+
+  it('should have a nav item pointing at each section', () => {
+    const sectionIds = Array.from(el.querySelectorAll('main > section')).map(s => s.id);
+    expect(app.NAV_ITEMS.map(i => i.id)).toEqual(sectionIds);
+  });
+
+  it('should render desktop nav links with correct hrefs', () => {
+    const links = Array.from(el.querySelectorAll<HTMLAnchorElement>('.desktop-nav a'));
+    expect(links.length).toBe(app.NAV_ITEMS.length);
+    expect(links.map(a => a.getAttribute('href'))).toEqual(app.NAV_ITEMS.map(i => '#' + i.id));
+  });
+
+  it('should mark the active section link', () => {
+    app.activeSection = 'skills';
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, portfolio');
+    const active = el.querySelector('.desktop-nav a.active');
+    expect(active?.textContent?.trim()).toBe('Skills');
+  });
+
+  it('should toggle the mobile menu', () => {
+    const toggle = el.querySelector<HTMLButtonElement>('.menu-toggle')!;
+    const mobileNav = el.querySelector('.mobile-nav')!;
+    expect(mobileNav.classList).not.toContain('open');
+
+    toggle.click();
+    fixture.detectChanges();
+    expect(app.isMenuVisible).toBeTrue();
+    expect(mobileNav.classList).toContain('open');
+    expect(toggle.getAttribute('aria-expanded')).toBe('true');
+
+    toggle.click();
+    fixture.detectChanges();
+    expect(app.isMenuVisible).toBeFalse();
+  });
+
+  it('should close the mobile menu when a mobile link is clicked', () => {
+    app.isMenuVisible = true;
+    fixture.detectChanges();
+    el.querySelector<HTMLAnchorElement>('.mobile-nav a')!.click();
+    expect(app.isMenuVisible).toBeFalse();
+  });
+
+  it('should set scrolled state and progress on scroll', () => {
+    app.onScroll();
+    expect(app.isScrolled).toBeFalse();
+    expect(app.scrollProgress).toBeGreaterThanOrEqual(0);
+
+    scrollTo(200);
+    app.onScroll();
+    expect(app.isScrolled).toBeTrue();
+    expect(app.scrollProgress).toBeGreaterThan(0);
+    expect(app.scrollProgress).toBeLessThanOrEqual(100);
+  });
+
+  it('should update the active section as the page scrolls', () => {
+    const contact = el.querySelector<HTMLElement>('#contact')!;
+    scrollTo(contact.offsetTop);
+    app.onScroll();
+    expect(app.activeSection).toBe('contact');
+
+    scrollTo(0);
+    app.onScroll();
+    expect(app.activeSection).toBe('home');
+  });
+
+  describe('resume download', () => {
+    it('should hide the download link while the resume is unavailable', () => {
+      resumeFake.setAvailable(false);
+      fixture.detectChanges();
+      expect(el.querySelector('.header-actions a[download]')).toBeNull();
+    });
+
+    it('should show a download link to the PDF once it is available', () => {
+      resumeFake.setAvailable(true);
+      fixture.detectChanges();
+      const link = el.querySelector<HTMLAnchorElement>('.header-actions a[download]');
+      expect(link).not.toBeNull();
+      expect(link!.getAttribute('href')).toBe('Ponnarasi_resume.pdf');
+      expect(link!.getAttribute('download')).toBe('Ponnarasi-Front-End-Developer-Resume.pdf');
+    });
+
+    it('should also offer the resume in the mobile menu', () => {
+      resumeFake.setAvailable(true);
+      fixture.detectChanges();
+      const link = el.querySelector<HTMLAnchorElement>('.mobile-nav a.resume-link');
+      expect(link?.getAttribute('aria-label')).toBe('Download resume');
+      expect(link?.hasAttribute('download')).toBeTrue();
+    });
   });
 });

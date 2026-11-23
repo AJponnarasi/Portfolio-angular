@@ -8,26 +8,19 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  currentYear: number = new Date().getFullYear();
+  readonly currentYear: number = new Date().getFullYear();
+  // Professional profiles only. Personal Facebook/Instagram were removed from the public portfolio.
   SOCIAL_MEDIA = [{
-    name: "facebook",
-    url: "https://www.facebook.com/ponnarasi.a.37",
-    icon: 'fab fa-facebook-f'
+    name: "X (Twitter)",
+    url: "https://x.com/a_ponnarasi",
+    icon: 'fab fa-x-twitter'
   }, {
-    name: "instagram",
-    url: "https://www.instagram.com/aj_ponnarasi",
-    icon: 'fab fa-instagram'
-  }, {
-    name: "twitter",
-    url: "https://twitter.com/a_ponnarasi",
-    icon: 'fab fa-twitter'
-  }, {
-    name: "linkedin",
+    name: "LinkedIn",
     url: "https://www.linkedin.com/in/ponnarasi-a-489413192/",
     icon: 'fab fa-linkedin-in'
   }, {
-    name: "mail",
-    url: "https://mail.google.com/mail/u/0/?tab=om#inbox?compose=new",
+    name: "Email",
+    url: "mailto:ajpkponnarasi6@gmail.com",
     icon: 'fas fa-envelope'
   }]
 }

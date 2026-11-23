@@ -1,16 +1,26 @@
-<div class="md:container px-5  py-14">
-    <h2 class="title" data-aos="fade-down">My Journey</h2>
-    <h4 class="subtitle" data-aos="fade-down">My Career Overview</h4>
-    <br>
-    <div class="flex flex-col px-5 gap-4 justify-center">
-       <div class="flex flex-wrap gap-5" *ngFor="let experience of EXPERIENCE_LIST">
-         <img [src]="experience.image" class="w-16 h-16"  [alt]="experience.company_name">
-         <div>
-            <h6>{{experience.role}}</h6>
-            <p>{{experience.company_name}} . {{experience.work_type}}</p>
-            <p class="text-muted text-sm">{{experience.time_period}} . {{calculateDuration(experience.start_date,experience.end_date)}} </p>
-            <p class="text-muted text-sm">{{experience.location}} . </p>
-         </div>
-       </div>
-    </div>
+<div class="md:container mx-auto px-5 py-20">
+    <span class="section-eyebrow" data-aos="fade-down">My Journey</span>
+    <h2 class="subtitle" data-aos="fade-down">My Career Overview</h2>
+
+    <ol class="timeline mt-10">
+        <li *ngFor="let experience of EXPERIENCE_LIST; let i = index; let first = first" class="timeline-item"
+            data-aos="fade-up" [attr.data-aos-delay]="i * 150">
+            <span class="dot" [class.current]="first"></span>
+            <div class="exp-card card-lift">
+                <img [src]="experience.image" class="logo" [alt]="experience.company_name">
+                <div class="flex-1 min-w-0">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <h3 class="card-title !leading-7">{{ experience.role }}</h3>
+                        <span *ngIf="first" class="current-chip">Current</span>
+                    </div>
+                    <p class="company">{{ experience.company_name }} · {{ experience.work_type }}</p>
+                    <div class="meta">
+                        <span><i class="far fa-calendar"></i> {{ experience.time_period }}</span>
+                        <span class="duration">{{ experience.duration }}</span>
+                        <span><i class="fas fa-location-dot"></i> {{ experience.location }}</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ol>
 </div>

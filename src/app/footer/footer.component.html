@@ -1,17 +1,20 @@
-<footer class="p-3 text-center">
-    <h6 class="mb-3">PONNARASI</h6>
-    <div class="footer-social-icon relative">
-        <div
-            class="arrow w-[50px] h-[50px] text-center absolute text-[30px] leading-[50px] top-[-103px] left-[48%] z-[1]  text-white">
-            <a href="#"><i class="fa fa-angle-double-up" aria-hidden="true"></i></a>
+<footer class="site-footer">
+    <a href="#home" class="to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+
+    <div class="md:container mx-auto px-5 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="text-center md:text-left">
+            <span class="brand">PONNARASI<span class="dot">.</span></span>
+            <p class="tag">Front End Developer · Angular &amp; TypeScript</p>
         </div>
-        <ul class="inline-block">
-            <li class="float-left p-2" *ngFor="let item of SOCIAL_MEDIA">
-                <a [href]="item.url" target="_blank">
-                    <i [ngClass]="item.icon"></i> </a>
+
+        <ul class="flex gap-3">
+            <li *ngFor="let item of SOCIAL_MEDIA">
+                <a [href]="item.url" target="_blank" rel="noopener" class="social" [attr.aria-label]="item.name">
+                    <i [ngClass]="item.icon"></i>
+                </a>
             </li>
         </ul>
     </div>
-    <p>CopyRights PONNI © All Reserved {{ currentYear }}</p>
-    <br />
+
+    <p class="copy">© {{ currentYear }} Ponnarasi. All rights reserved.</p>
 </footer>

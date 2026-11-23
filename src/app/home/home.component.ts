@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import AOS from 'aos';
+import { Component, inject } from '@angular/core';
+import { ResumeService } from '../shared/resume.service';
+import { yearsOfExperience } from '../shared/career';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,8 @@ import AOS from 'aos';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  ngAfterViewInit() {
-    AOS.refresh();
-  }
+  readonly resume = inject(ResumeService);
 
- 
+  /** Keeps the hero stat current automatically. */
+  readonly yearsOfExperience = yearsOfExperience();
 }

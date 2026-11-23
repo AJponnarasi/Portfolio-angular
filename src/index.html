@@ -3,14 +3,35 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Ponnarasi | Portfolio</title>
+  <title>Ponnarasi | Front End Developer Portfolio</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="description"
+    content="Ponnarasi, Front End Developer with 7+ years of experience building scalable, high-performance web applications with Angular and TypeScript.">
+  <meta name="theme-color" content="#06223f">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ponnarasi | Front End Developer">
+  <meta property="og:description"
+    content="Angular & TypeScript specialist crafting fast, scalable and pixel-perfect web applications.">
+  <meta property="og:site_name" content="Ponnarasi Portfolio">
+  <meta property="og:image" content="og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ponnarasi, Front End Developer: Angular and TypeScript">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="og-image.jpg">
+  <!-- TODO when deployed: make og:image/twitter:image absolute (https://your-domain/og-image.jpg)
+       and add <link rel="canonical"> + <meta property="og:url"> with the live address. -->
+  <link rel="preload" as="image" href="assets/images/profile/portrait-cutout-800.webp"
+    imagesrcset="assets/images/profile/portrait-cutout-480.webp 480w, assets/images/profile/portrait-cutout-800.webp 800w"
+    imagesizes="(min-width: 768px) 440px, 280px" fetchpriority="high">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
 
 <body>
-  <app-root ngSkipHydration></app-root>
+  <app-root></app-root>
 </body>
 
 </html>

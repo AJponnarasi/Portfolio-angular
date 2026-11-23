@@ -1,7 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import AOS from 'aos';
+import { Component, ElementRef, OnDestroy, ViewChild, afterNextRender } from '@angular/core';
 import Splide from '@splidejs/splide';
+import AOS from 'aos';
+import { yearsOfExperience } from '../shared/career';
+
+export interface ProjectStat {
+  number: string;
+  label: string;
+}
+
+export interface ProjectVisual {
+  /** Short category label shown in the card banner */
+  label: string;
+  /** Font Awesome class for the main icon */
+  icon: string;
+  /** Two smaller Font Awesome icons orbiting the main tile */
+  accents: [string, string];
+  /** Gradient start/end colours for the icon tile and banner tint */
+  from: string;
+  to: string;
+}
 
 export interface Project {
   id: string;
@@ -12,19 +30,38 @@ export interface Project {
   technologies: string[];
   icon: string;
   image?: string;
-  placeholder: {
-    emoji: string;
-    text: string;
-  };
+  visual: ProjectVisual;
 }
 
 @Component({
   selector: 'app-project',
-  imports: [CommonModule,],
+  imports: [CommonModule],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss',
 })
-export class ProjectComponent {
+export class ProjectComponent implements OnDestroy {
+  @ViewChild('carousel', { static: true }) carousel!: ElementRef<HTMLElement>;
+  private splide?: Splide;
+
+  constructor() {
+    // Runs only in the browser, once this component's DOM is rendered
+    afterNextRender(() => {
+      this.splide = new Splide(this.carousel.nativeElement, {
+        type: 'loop',
+        perPage: 2,
+        autoplay: true,
+        interval: 4500,
+        pauseOnHover: true,
+        gap: '1.75rem',
+        breakpoints: {
+          768: { perPage: 1, gap: '1rem' },
+        }
+      }).mount();
+      // Carousel changes page height; re-measure scroll-reveal trigger points
+      AOS.refreshHard();
+    });
+  }
+
   projects: Project[] = [
     {
       id: 'zedbee-fms',
@@ -39,9 +76,12 @@ export class ProjectComponent {
       ],
       technologies: ['HTML5', 'CSS', 'Bootstrap', 'jQuery', 'JavaScript'],
       icon: 'ZB',
-      placeholder: {
-        emoji: '🚛',
-        text: 'IoT Fleet Management'
+      visual: {
+        label: 'IoT Fleet Management',
+        icon: 'fa-solid fa-truck-fast',
+        accents: ['fa-solid fa-gauge-high', 'fa-solid fa-qrcode'],
+        from: '#06b6d4',
+        to: '#2563eb'
       }
     },
     {
@@ -56,9 +96,12 @@ export class ProjectComponent {
       ],
       technologies: ['HTML5', 'CSS', 'Bootstrap', 'jQuery', 'JavaScript'],
       icon: 'ABB',
-      placeholder: {
-        emoji: '🔧',
-        text: 'Panel Selection Tool'
+      visual: {
+        label: 'Panel Selection Tool',
+        icon: 'fa-solid fa-table-cells-large',
+        accents: ['fa-solid fa-screwdriver-wrench', 'fa-solid fa-file-pdf'],
+        from: '#f97316',
+        to: '#e11d48'
       }
     },
     {
@@ -74,9 +117,12 @@ export class ProjectComponent {
       ],
       technologies: ['HTML5', 'CSS', 'Bootstrap', 'jQuery', 'JavaScript'],
       icon: 'FM',
-      placeholder: {
-        emoji: '📍',
-        text: 'Location Tracking'
+      visual: {
+        label: 'Location Tracking',
+        icon: 'fa-solid fa-map-location-dot',
+        accents: ['fa-solid fa-route', 'fa-solid fa-bell'],
+        from: '#10b981',
+        to: '#0d9488'
       }
     },
     {
@@ -92,9 +138,12 @@ export class ProjectComponent {
       ],
       technologies: ['Angular v12', 'ng-bootstrap', 'TypeScript'],
       icon: 'YD',
-      placeholder: {
-        emoji: '📊',
-        text: 'Admin Dashboard'
+      visual: {
+        label: 'Admin Dashboard',
+        icon: 'fa-solid fa-chart-line',
+        accents: ['fa-solid fa-chart-pie', 'fa-solid fa-bell'],
+        from: '#8b5cf6',
+        to: '#4f46e5'
       }
     },
     {
@@ -110,57 +159,33 @@ export class ProjectComponent {
       ],
       technologies: ['Angular', 'Jest'],
       icon: 'WM',
-      placeholder: {
-        emoji: '⚡',
-        text: 'Low-Code Platform'
+      visual: {
+        label: 'Low-Code Platform',
+        icon: 'fa-solid fa-wand-magic-sparkles',
+        accents: ['fa-solid fa-cubes', 'fa-solid fa-layer-group'],
+        from: '#0ea5e9',
+        to: '#1e40af'
       }
     }
   ];
 
-  stats = [
-    { number: '5', label: 'Major Projects' },
-    { number: '8+', label: 'Technologies' },
-    { number: '3', label: 'Frameworks' },
-    { number: '100%', label: 'Frontend Focus' }
+  stats: ProjectStat[] = [
+    { number: `${yearsOfExperience()}+`, label: 'Years Experience' },
+    { number: '5+', label: 'Major Projects' },
+    { number: '3', label: 'Companies' },
+    { number: '8+', label: 'Technologies' }
   ];
 
 
-  ngAfterViewInit() {
-
-    setTimeout(() => {
-      new Splide('.splide', {
-        type: 'loop',
-        perPage: 2,
-        autoplay: true,
-        gap: '2rem',
-        breakpoints: {
-          1024: { perPage: 2 },
-          640: { perPage: 1 },
-        }
-      }).mount();
-      AOS.refresh();
-
-    }, 100); // ensures
-
-
+  ngOnDestroy() {
+    this.splide?.destroy();
   }
 
-  trackByProject(index: number, project: Project): string {
+  trackByProject(_index: number, project: Project): string {
     return project.id;
   }
 
-  trackByStat(index: number, stat: any): string {
+  trackByStat(_index: number, stat: ProjectStat): string {
     return stat.label;
-  }
-
-  onProjectClick(project: Project): void {
-    // Handle project click - navigate to detail page or open modal
-    console.log('Project clicked:', project.title);
-  }
-
-  onImageError(event: any): void {
-    // Handle image load errors
-    event.target.style.display = 'none';
-    event.target.nextElementSibling.style.display = 'flex';
   }
 }

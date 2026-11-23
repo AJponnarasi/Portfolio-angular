@@ -1,0 +1,2 @@
+/* Tailwind CSS v4 entry point. Kept as plain CSS so it is handled by PostCSS, not Sass. */
+@import "tailwindcss";
