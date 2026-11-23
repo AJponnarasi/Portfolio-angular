@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { SkillsComponent } from './skills/skills.component';
 
+/**
+ * The portfolio is a single page; sections are reached with #anchors, not routes.
+ * Any other path (e.g. old links to /home) redirects to the root.
+ */
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'skills', component: SkillsComponent },
-    { path: '**', redirectTo: '' } // optional: wildcard route
+  { path: '', pathMatch: 'full', children: [] },
+  { path: '**', redirectTo: '' }
 ];
-

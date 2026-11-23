@@ -1,46 +1,51 @@
-<div class="md:container px-5  py-14">
-    <h2 class="title" data-aos="fade-down">Skills</h2>
-    <h4 class="subtitle" data-aos="fade-down">MY TOP SKILLS</h4>
-    <br>
-    <div class="flex flex-wrap gap-4 justify-center">
-        <div data-aos="fade-up" data-aos-delay="0" class="bg-white sm:cursor-pointer 
-        relative group w-full flex items-center
-        gap-5 p-5 max-w-sm rounded-md border-2 border-slate-200" *ngFor="let skill of SKILLS_LIST">
-            <div>
-                <img [src]="skill.icon" class="w-10 group-hover:scale-125 duration-200" [alt]="skill.id">
+<div class="md:container mx-auto px-5 py-20">
+    <span class="section-eyebrow" data-aos="fade-down">Skills</span>
+    <h2 class="subtitle" data-aos="fade-down">MY TOP SKILLS</h2>
+    <p class="section-lead" data-aos="fade-down">The tools I reach for every day. Tap any card to see what I do with it.</p>
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 mt-10">
+        <button type="button" *ngFor="let skill of SKILLS_LIST; let i = index" data-aos="fade-up" aria-haspopup="dialog"
+            [attr.data-aos-delay]="(i % 4) * 100" (click)="openSkill(skill)"
+            class="skill-card card-lift group text-left">
+            <div class="flex items-start justify-between">
+                <div class="icon-wrap">
+                    <img [src]="skill.icon" class="w-8 group-hover:scale-110 duration-200" [alt]="skill.title">
+                </div>
+                <i class="fas fa-arrow-right arrow"></i>
             </div>
-            <div>
-                <h6>{{skill.title}}</h6>
-                <p class="italic">{{skill.desc}}</p>
-                <div class="text-xl absolute top-3 right-3" (click)="toggleSkillDetails(skill.id)">
-                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
-                        width="1em" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="none" d="M0 0h24v24H0z"></path>
-                        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
-                    </svg>
+            <h3 class="card-title mt-4">{{ skill.title }}</h3>
+            <p class="text-sm text-slate-500 italic">{{ skill.desc }}</p>
+
+            <div class="mt-4">
+                <div class="flex justify-between text-xs font-Poppins mb-1.5">
+                    <span class="!text-slate-500 capitalize">{{ skill.experienceLevel }}</span>
+                    <span class="!text-slate-400">{{ levelPercent[skill.experienceLevel] }}%</span>
+                </div>
+                <div class="meter">
+                    <div class="meter-fill" [style.width.%]="levelPercent[skill.experienceLevel]"></div>
                 </div>
             </div>
-        </div>
+        </button>
     </div>
 </div>
 
-<div
-  *ngIf="isModalOpen"
-  class="fixed inset-0 bg-opacity-50 flex justify-center items-center z-50  modal-overlay"
->
-  <!-- Modal Content -->
-  <div class="bg-white p-6 rounded-lg w-80 relative modal-style">
-    <div class="flex items-center gap-2">
-        <img class="h-10" [src]="selectedSkill.icon" alt="selectedSkill.id">
-        <h6>{{selectedSkill.title}}</h6>
+<div *ngIf="isModalOpen && selectedSkill as selectedSkill" class="modal-overlay" (click)="closeModal()">
+    <div class="modal-style" role="dialog" aria-modal="true" aria-labelledby="skill-dialog-title"
+        aria-describedby="skill-dialog-desc" (click)="$event.stopPropagation()" (keydown.tab)="trapFocus($event)"
+        (keydown.shift.tab)="trapFocus($event)">
+        <button #closeButton class="close-x" (click)="closeModal()" aria-label="Close"><i class="fas fa-xmark"></i></button>
+        <div class="flex items-center gap-3">
+            <div class="icon-wrap"><img class="w-8" [src]="selectedSkill.icon" alt=""></div>
+            <div>
+                <h2 id="skill-dialog-title" class="card-title !leading-6">{{ selectedSkill.title }}</h2>
+                <span class="level-chip">{{ selectedSkill.experienceLevel }}</span>
+            </div>
+        </div>
+        <p id="skill-dialog-desc" class="text-sm text-slate-600 mt-4 font-Poppins">{{ selectedSkill.description }}</p>
+        <ul class="key-list mt-4">
+            <li *ngFor="let keySkill of selectedSkill.keySkills">
+                <i class="fas fa-circle-check"></i> {{ keySkill }}
+            </li>
+        </ul>
     </div>
-    <br>
-    <ul class="list-decimal px-4 font-Poppins sm:text-sm text-xs !leading-7">
-        <li *ngFor="let keySkill of selectedSkill.keySkills">{{ keySkill }}</li>
-    </ul>
-    <br>
-    <div class="flex justify-end">
-        <button class="btn cursor-pointer" (click)="closeModal()">Close</button>
-    </div>
-  </div>
 </div>

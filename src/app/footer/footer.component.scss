@@ -1,0 +1,70 @@
+.site-footer {
+    position: relative;
+    background: #041a31;
+    border-top: 1px solid rgb(255 255 255 / .08);
+}
+
+.to-top {
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #B6CCF5, #D5E3F1);
+    color: var(--text-color);
+    box-shadow: 0 10px 25px -8px rgb(0 0 0 / .5);
+    transition: transform .25s ease;
+
+    &:hover {
+        transform: translateX(-50%) translateY(-4px);
+    }
+}
+
+.brand {
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: .08em;
+    color: #fff;
+
+    .dot {
+        color: #7ea3ec;
+    }
+}
+
+.tag {
+    font-family: Poppins;
+    font-size: .8rem;
+    color: var(--text-light-color);
+    margin-top: .25rem;
+}
+
+.social {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #fff;
+    border: 1px solid rgb(255 255 255 / .18);
+    transition: all .25s ease;
+
+    &:hover {
+        background: #fff;
+        color: var(--text-color);
+        transform: translateY(-3px);
+    }
+}
+
+.copy {
+    font-family: Poppins;
+    font-size: .78rem;
+    text-align: center;
+    color: rgb(183 197 211 / .7);
+    padding: 1rem;
+    border-top: 1px solid rgb(255 255 255 / .06);
+}

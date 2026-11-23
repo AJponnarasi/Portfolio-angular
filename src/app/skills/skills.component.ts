@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import AOS from 'aos';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 
 export interface Skill {
   id: string;
@@ -22,8 +21,8 @@ export interface Skill {
   styleUrl: './skills.component.scss'
 })
 export class SkillsComponent {
-  isModalOpen:boolean = false;
-  selectedSkill: any;
+  isModalOpen = false;
+  selectedSkill: Skill | null = null;
   SKILLS_LIST: Skill[] = [
     {
       id: 'angular',
@@ -57,6 +56,23 @@ export class SkillsComponent {
         'Integration with modern frameworks'
       ],
       experienceLevel: 'advanced',
+      expanded: false
+    },
+    {
+      id: 'jest',
+      title: 'Jest',
+      desc: 'JavaScript Testing Framework',
+      description: 'Delightful unit testing framework for JavaScript and TypeScript projects',
+      icon: 'assets/images/jest.png',
+      colorClass: 'jest',
+      keySkills: [
+        'Writing unit and integration tests',
+        'Mocking functions and modules',
+        'Snapshot testing',
+        'Code coverage reporting',
+        'Test-driven development (TDD) practices'
+      ],
+      experienceLevel: 'intermediate',
       expanded: false
     },
     {
@@ -113,7 +129,7 @@ export class SkillsComponent {
     {
       id: 'jquery',
       title: 'jQuery',
-      desc:'Simplified JavaScript',
+      desc: 'Simplified JavaScript',
       description: 'DOM manipulation, event handling, and AJAX requests',
       icon: 'assets/images/jquery.png',
       colorClass: 'jquery',
@@ -146,19 +162,38 @@ export class SkillsComponent {
     }
   ];
 
-  ngAfterViewInit() {
-    AOS.refresh();
+  levelPercent: Record<Skill['experienceLevel'], number> = {
+    beginner: 40,
+    intermediate: 70,
+    advanced: 85,
+    expert: 95
+  };
+
+  /** Element that had focus before the dialog opened, so focus can return to it. */
+  private returnFocusTo: HTMLElement | null = null;
+
+  /** Move keyboard focus into the dialog as soon as it renders. */
+  @ViewChild('closeButton')
+  set closeButton(ref: ElementRef<HTMLButtonElement> | undefined) {
+    ref?.nativeElement.focus();
   }
 
-  toggleSkillDetails(skillId: string): void {
-    this.isModalOpen = !this.isModalOpen
-    // Toggle current skill
-    this.selectedSkill = this.SKILLS_LIST.find(s => s.id === skillId);
-    
+  openSkill(skill: Skill): void {
+    this.returnFocusTo = document.activeElement as HTMLElement | null;
+    this.selectedSkill = skill;
+    this.isModalOpen = true;
   }
 
-  closeModal(){
-    this.isModalOpen = false
+  @HostListener('document:keydown.escape')
+  closeModal(): void {
+    if (!this.isModalOpen) return;
+    this.isModalOpen = false;
+    this.returnFocusTo?.focus();
+    this.returnFocusTo = null;
   }
 
+  /** The close button is the dialog's only focusable element, so Tab keeps focus on it. */
+  trapFocus(event: Event): void {
+    event.preventDefault();
+  }
 }

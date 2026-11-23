@@ -1,0 +1,20 @@
+<footer class="site-footer">
+    <a href="#home" class="to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+
+    <div class="md:container mx-auto px-5 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="text-center md:text-left">
+            <span class="brand">PONNARASI<span class="dot">.</span></span>
+            <p class="tag">Front End Developer · Angular &amp; TypeScript</p>
+        </div>
+
+        <ul class="flex gap-3">
+            <li *ngFor="let item of SOCIAL_MEDIA">
+                <a [href]="item.url" target="_blank" rel="noopener" class="social" [attr.aria-label]="item.name">
+                    <i [ngClass]="item.icon"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <p class="copy">© {{ currentYear }} Ponnarasi. All rights reserved.</p>
+</footer>

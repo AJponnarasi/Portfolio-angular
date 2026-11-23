@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import AOS from 'aos';
 
 interface Service {
   id: number;
@@ -46,24 +45,7 @@ export class ServicesComponent {
       techStack: ['REST API', 'HTTP Client', 'JSON', 'Authentication']
     }
   ];
-  hoveredCard :any
-
-
-  ngAfterViewInit() {
-    AOS.refresh();
-  }
-
-  trackByServiceId(index: number, service: Service): number {
+  trackByServiceId(_index: number, service: Service): number {
     return service.id;
   }
-  
-
-  onCardHover(serviceId: number): void {
-    this.hoveredCard = serviceId;
-  }
-
-  onCardLeave(serviceId: number): void {
-    this.hoveredCard = null;
-  }
-
 }

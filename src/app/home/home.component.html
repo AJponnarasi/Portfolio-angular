@@ -1,29 +1,79 @@
-<div class="min-h-screen relative flex md:flex-row flex-col-reverse md:items-end justify-center items-center">
-    <div class="pb-16 px-6 pt-5" data-aos="fade-down">
-        <h2>Front End Developer</h2>
-        <br>
-        <div class="flex justify-end">
-            <button class="btn"> Hire Me</button>
-        </div>
-        <div class="flex flex-col gap-10 mt-10">
-            <div class="flex items-center w-80 gap-5">
-                <h3>5+</h3>
-                <p>Years of Experinse in Frontend development</p>
-            </div>
-            <div class="flex items-center w-80 gap-5 flex-row-reverse text-right">
-                <h3>10+</h3>
-                <p>Projects Worked in my career</p>
-            </div>
+<div class="hero min-h-screen relative flex md:flex-row flex-col-reverse md:items-end justify-center items-center gap-6 md:gap-12 pt-24">
+    <div class="hero-blob blob-1"></div>
+    <div class="hero-blob blob-2"></div>
+
+    <!-- Above-the-fold content renders immediately (no scroll animation) for a fast first paint -->
+    <div class="px-6 pb-14 md:pb-20 max-w-xl relative z-10 hero-copy self-center">
+        <span class="availability">
+            <span class="pulse"></span> Open to new opportunities
+        </span>
+
+        <p class="greeting">Hi, I'm <strong>Ponnarasi</strong> 👋</p>
+        <h1 class="hero-title">
+            <span class="sr-only">Ponnarasi, </span>Front End <span class="gradient-text">Developer</span>
+        </h1>
+        <p class="tagline">
+            I craft fast, scalable and pixel-perfect web applications with
+            <strong>Angular</strong> &amp; <strong>TypeScript</strong> — turning complex
+            requirements into clean, delightful user experiences.
+        </p>
+
+        <div class="flex flex-wrap gap-3 mt-7">
+            <a href="#contact" class="btn btn-solid">Hire Me <i class="fas fa-arrow-right text-sm"></i></a>
+            <a href="#projects" class="btn btn-outline">View My Work</a>
+            <a *ngIf="resume.available()" [href]="resume.url" [attr.download]="resume.fileName"
+                class="resume-cta">
+                <span class="resume-icon"><i class="fas fa-file-arrow-down"></i></span> Download CV
+            </a>
         </div>
 
+        <dl class="grid grid-cols-2 gap-4 mt-10">
+            <div class="stat-card">
+                <dt class="sr-only">Experience</dt>
+                <dd class="stat-value">{{ yearsOfExperience }}+</dd>
+                <dd class="stat-text">Years of experience in frontend development</dd>
+            </div>
+            <div class="stat-card">
+                <dt class="sr-only">Projects</dt>
+                <dd class="stat-value">10+</dd>
+                <dd class="stat-text">Projects delivered across my career</dd>
+            </div>
+        </dl>
+
+        <div class="flex items-center gap-3 mt-8">
+            <span class="text-sm text-slate-500 font-Poppins">Find me on</span>
+            <a class="social" href="https://www.linkedin.com/in/ponnarasi-a-489413192/" target="_blank"
+                rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a class="social" href="mailto:ajpkponnarasi6@gmail.com" aria-label="Email"><i
+                    class="fas fa-envelope"></i></a>
+        </div>
     </div>
-    <div class="md:h-[37rem] h-96">
-        <img src="assets/images/person.png" data-aos="slide-up" alt="image" class="h-full object-cover">
-    </div>
-    <div data-aos="slide-left" data-aos-delay="1200"
-        class="absolute h-full md:w-4/12 w-8/12 top-0 right-0 bg-primaryLinear bottom-0 -z-10">
-        <h1 class="rotate-90 absolute top-[35%] right-[-15%] text-[#EAF2FA] name-style">
+
+    <figure class="portrait relative z-10">
+        <div class="portrait-glow" aria-hidden="true"></div>
+        <img class="portrait-img" src="assets/images/profile/portrait-cutout-800.webp"
+            srcset="assets/images/profile/portrait-cutout-480.webp 480w, assets/images/profile/portrait-cutout-800.webp 800w"
+            sizes="(min-width: 768px) 440px, 280px" width="800" height="1000" fetchpriority="high"
+            alt="Portrait of Ponnarasi">
+        <div class="float-badge badge-1">
+            <img src="assets/images/angular.png" alt="" width="22" height="22"> Angular
+        </div>
+        <div class="float-badge badge-2">
+            <img src="assets/images/typescript.png" alt="" width="22" height="22"> TypeScript
+        </div>
+        <div class="exp-chip">
+            <i class="fas fa-briefcase"></i> Senior Development Engineer
+        </div>
+    </figure>
+
+    <div data-aos="slide-left" data-aos-delay="200" aria-hidden="true"
+        class="absolute md:h-full h-[26rem] md:w-4/12 w-8/12 top-0 right-0 bg-primaryLinear">
+        <span class="name-style">
             PONNARASI
-        </h1>
+        </span>
     </div>
+
+    <a href="#skills" class="scroll-cue" aria-label="Scroll to skills">
+        <span></span>
+    </a>
 </div>
