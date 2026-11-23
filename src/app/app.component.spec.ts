@@ -62,6 +62,26 @@ describe('AppComponent', () => {
     expect(active?.textContent?.trim()).toBe('Skills');
   });
 
+  it('should switch theme from the header toggle and label it accordingly', () => {
+    const root = document.documentElement;
+    const before = root.getAttribute('data-theme');
+    const stored = localStorage.getItem('theme');
+    try {
+      const btn = el.querySelector<HTMLButtonElement>('.theme-toggle')!;
+      const start = app.theme.theme();
+      btn.click();
+      fixture.detectChanges();
+      const next = start === 'dark' ? 'light' : 'dark';
+      expect(app.theme.theme()).toBe(next);
+      expect(root.getAttribute('data-theme')).toBe(next);
+      expect(btn.getAttribute('aria-label')).toBe(next === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+      expect(btn.querySelector('i')!.classList).toContain(next === 'dark' ? 'fa-sun' : 'fa-moon');
+    } finally {
+      before === null ? root.removeAttribute('data-theme') : root.setAttribute('data-theme', before);
+      stored === null ? localStorage.removeItem('theme') : localStorage.setItem('theme', stored);
+    }
+  });
+
   it('should toggle the mobile menu', () => {
     const toggle = el.querySelector<HTMLButtonElement>('.menu-toggle')!;
     const mobileNav = el.querySelector('.mobile-nav')!;

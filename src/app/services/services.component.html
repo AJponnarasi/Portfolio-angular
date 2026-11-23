@@ -10,10 +10,10 @@
                 <img [src]="service.icon" [alt]="service.title" class="w-9 h-9" />
             </div>
             <h3 class="card-title mt-6 mb-3 !text-xl">{{ service.title }}</h3>
-            <p class="leading-relaxed text-sm !text-slate-600 font-Poppins">{{ service.description }}</p>
+            <p class="leading-relaxed text-sm text-body font-Poppins">{{ service.description }}</p>
             <div class="flex flex-wrap gap-2 mt-6">
                 <span *ngFor="let tech of service.techStack"
-                    class="tech-tag rounded-full px-3 py-1 text-xs !text-blue-900 font-medium font-Poppins">
+                    class="tech-tag rounded-full px-3 py-1 text-xs font-medium font-Poppins">
                     {{ tech }}
                 </span>
             </div>

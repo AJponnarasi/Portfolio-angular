@@ -8,8 +8,11 @@
     </p>
 
     <div class="grid gap-10 md:grid-cols-5 mt-10 relative">
-        <form data-aos="fade-up" class="md:col-span-3 form-card"
-            action="https://submit-form.com/vtcoKsHLNuIfSsHeThxtd" target="_blank">
+        <!-- method/action keep the form working without JavaScript; with JS it's sent in the background -->
+        <form #contactForm data-aos="fade-up" class="md:col-span-3 form-card" method="post" [action]="endpoint"
+            (submit)="onSubmit($event, contactForm)" [attr.aria-busy]="status === 'sending'">
+            <!-- spam trap: hidden from people, bots fill it in -->
+            <input type="text" name="_honeypot" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="grid sm:grid-cols-2 gap-4">
                 <label class="field">
                     <span>Name</span>
@@ -25,9 +28,26 @@
                 <span>Message</span>
                 <textarea name="message" placeholder="Tell me about your project..." rows="6" required></textarea>
             </label>
-            <button class="btn submit-btn self-start">
-                Send Message <i class="fas fa-paper-plane text-sm"></i>
-            </button>
+            <div class="flex flex-wrap items-center gap-4">
+                <button type="submit" class="btn submit-btn" [disabled]="status === 'sending'">
+                    <ng-container *ngIf="status !== 'sending'; else sending">
+                        Send Message <i class="fas fa-paper-plane text-sm"></i>
+                    </ng-container>
+                    <ng-template #sending>Sending… <i class="fas fa-spinner fa-spin text-sm"></i></ng-template>
+                </button>
+
+                <p class="form-status" role="status" aria-live="polite">
+                    <ng-container [ngSwitch]="status">
+                        <span *ngSwitchCase="'sent'" class="ok">
+                            <i class="fas fa-circle-check"></i> Thanks! Your message has been sent. I'll reply soon.
+                        </span>
+                        <span *ngSwitchCase="'error'" class="err">
+                            <i class="fas fa-triangle-exclamation"></i> Couldn't send right now. Please email me at
+                            <a [href]="mailtoFallback">ajpkponnarasi6&#64;gmail.com</a>.
+                        </span>
+                    </ng-container>
+                </p>
+            </div>
         </form>
 
         <div class="md:col-span-2 flex flex-col gap-4">
@@ -57,7 +77,7 @@
                 <span class="info-icon"><i class="fas fa-location-dot"></i></span>
                 <div>
                     <span class="info-label">Address</span>
-                    <span class="info-value">18-7-16(4), Kanniyamman Kovil St,<br>Surandai-627859, Tenkasi</span>
+                    <span class="info-value">Tisayanvillai, <span class="whitespace-nowrap">Tirunelveli - 627657</span></span>
                 </div>
             </div>
         </div>

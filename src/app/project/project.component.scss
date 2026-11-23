@@ -5,7 +5,7 @@
     padding: 1.1rem;
     border-radius: 1rem;
     background: var(--bg_light_primary);
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
 }
 
 .stat-num {
@@ -18,7 +18,7 @@
 .stat-label {
     font-family: Poppins;
     font-size: .8rem;
-    color: #64748b !important;
+    color: var(--text-muted) !important;
 }
 
 .carousel-wrap {
@@ -35,12 +35,12 @@
     flex-direction: column;
     border-radius: 1.25rem;
     overflow: hidden;
-    background: #fff;
-    border: 1px solid #e2e8f0;
+    background: var(--surface);
+    border: 1px solid var(--border);
     transition: box-shadow .3s ease, border-color .3s ease;
 
     &:hover {
-        border-color: #b6ccf5;
+        border-color: var(--primary-soft);
         box-shadow: 0 20px 40px -22px rgb(30 64 175 / .4);
     }
 }
@@ -58,8 +58,8 @@
     /* soft tint of the project's own colours */
     background:
         radial-gradient(circle at 15% 20%, color-mix(in srgb, var(--from) 28%, transparent), transparent 55%),
-        linear-gradient(135deg, color-mix(in srgb, var(--from) 14%, #fff) 0%, color-mix(in srgb, var(--to) 12%, #f8fafc) 100%);
-    border-bottom: 1px solid color-mix(in srgb, var(--to) 15%, #e2e8f0);
+        linear-gradient(135deg, color-mix(in srgb, var(--from) 14%, var(--banner-base)) 0%, color-mix(in srgb, var(--to) 12%, var(--banner-base-2)) 100%);
+    border-bottom: 1px solid color-mix(in srgb, var(--to) 15%, var(--border));
 
     .badge {
         position: absolute;
@@ -69,8 +69,8 @@
         font-weight: 700;
         font-size: .7rem;
         letter-spacing: .06em;
-        color: #fff !important;
-        background: var(--bg-dark_primary);
+        color: var(--solid-fg) !important;
+        background: var(--solid-bg);
         padding: .25rem .65rem;
         border-radius: 999px;
         z-index: 2;
@@ -136,9 +136,9 @@
     border-radius: 50%;
     font-size: .72rem;
     color: var(--to);
-    background: #fff;
+    background: var(--surface);
     box-shadow: 0 6px 14px -6px color-mix(in srgb, var(--to) 60%, transparent);
-    border: 1px solid color-mix(in srgb, var(--to) 18%, #fff);
+    border: 1px solid color-mix(in srgb, var(--to) 18%, var(--surface));
     transition: transform .45s ease;
     z-index: 1;
 
@@ -167,7 +167,7 @@
     margin-top: .15rem;
     font-family: Poppins;
     font-size: .75rem;
-    color: #64748b !important;
+    color: var(--text-muted) !important;
 }
 
 .project-card:hover {
@@ -204,7 +204,7 @@
     font-family: Poppins;
     font-size: .875rem;
     line-height: 1.7;
-    color: #475569 !important;
+    color: var(--text-body) !important;
 }
 
 .label {
@@ -213,7 +213,7 @@
     font-weight: 700;
     letter-spacing: .12em;
     text-transform: uppercase;
-    color: #64748b !important;
+    color: var(--text-muted) !important;
     margin: 1.1rem 0 .5rem;
 }
 
@@ -223,7 +223,7 @@
     gap: .35rem .75rem;
     font-family: Poppins;
     font-size: .8rem;
-    color: #334155;
+    color: var(--text-strong-list);
 
     i {
         font-size: .7rem;
@@ -237,8 +237,8 @@
     font-size: .72rem;
     font-weight: 500;
     color: var(--text-dark-color) !important;
-    background: #eef3fb;
-    border: 1px solid #dbe6f5;
+    background: var(--accent-softer);
+    border: 1px solid var(--accent-border);
     padding: .2rem .65rem;
     border-radius: .5rem;
 }
@@ -248,12 +248,12 @@
 }
 
 ::ng-deep .splide__arrow {
-    background: #fff !important;
-    border: 1px solid #dbe6f5 !important;
+    background: var(--surface) !important;
+    border: 1px solid var(--accent-border) !important;
     width: 2.75rem !important;
     height: 2.75rem !important;
     opacity: 1 !important;
-    box-shadow: 0 8px 20px -10px rgb(6 34 63 / .35);
+    box-shadow: 0 8px 20px -10px rgb(var(--shadow-rgb) / .35);
     transition: background-color .2s ease;
 
     svg {
@@ -263,10 +263,10 @@
     }
 
     &:hover:not(:disabled) {
-        background: var(--bg-dark_primary) !important;
+        background: var(--solid-bg) !important;
 
         svg {
-            fill: #fff !important;
+            fill: var(--solid-fg) !important;
         }
     }
 }
@@ -297,13 +297,13 @@
     padding: 7px;
     margin: 0 !important;
     border-radius: 999px !important;
-    background: #c7d6ee !important;
+    background: var(--dot-track) !important;
     background-clip: content-box !important;
     opacity: 1 !important;
     transition: width .25s ease;
 
     &.is-active {
-        background: var(--bg-dark_primary) !important;
+        background: var(--solid-bg) !important;
         background-clip: content-box !important;
         transform: none !important;
         width: 24px !important;

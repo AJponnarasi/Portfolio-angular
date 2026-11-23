@@ -1,15 +1,121 @@
 /* Global styles. Tailwind is loaded from src/tailwind.css, and AOS/Splide/Font Awesome CSS from angular.json "styles". */
 
 :root {
+  /* ---------- fixed brand colours (same in both themes) ---------- */
+  --navy: #06223f;
+  --bg-dark_primary: #06223f;
   --subtitle-on-dark: #b7c5d3;
-  --primary-color: #1E40AF;
+  --text-light-color: #b7c5d3;
   --accent-color: #F472B6;
   --neutral-color: #374151;
-  --text-color: #06223f;
-  --bg-dark_primary: #06223f;
+
+  /* ---------- light theme (default) ---------- */
+  color-scheme: light;
+  --page-bg: #ffffff;
   --bg_light_primary: #f5f9fd;
-  --text-light-color: #b7c5d3;
-  --text-dark-color: #253d57
+  --surface: #ffffff;
+  --surface-glass: rgb(255 255 255 / .75);
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text-color: #06223f;
+  --text-dark-color: #253d57;
+  --text-body: #475569;
+  --text-muted: #64748b;
+  --text-faint: #94a3b8;
+  --text-strong-list: #334155;
+  --primary-color: #1E40AF;
+  --primary-soft: #7ea3ec;
+  --subtitle-color: #6b82a1;
+  --accent-soft: #dbe6fb;
+  --accent-softer: #eef3fb;
+  --accent-border: #dbe6f5;
+  --tech-tag-bg: #cedef2;
+  --tech-tag-fg: #1e3a8a;
+  --meter-track: #e8eef7;
+  --solid-bg: #06223f;
+  --solid-bg-hover: #0b3463;
+  --solid-fg: #ffffff;
+  --btn-border: #06223f;
+  --header-glass: rgb(255 255 255 / .8);
+  --nav-pill-bg: rgb(255 255 255 / .55);
+  --nav-hover: rgb(182 204 245 / .5);
+  --hairline: rgb(6 34 63 / .1);
+  --shadow-rgb: 6 34 63;
+  --panel-from: #B6CCF5;
+  --panel-to: #D5E3F1;
+  --name-color: #06223f;
+  --blob-1: #c7d8f8;
+  --blob-2: #e9d5ff;
+  --glow-core: rgb(255 255 255 / .85);
+  --success-fg: #166534;
+  --success-bg: #dcfce7;
+  --success-border: #bbf7d0;
+  --service-num: #e3ebf7;
+  --service-num-hover: #c9daf6;
+  --banner-base: #ffffff;
+  --banner-base-2: #f8fafc;
+  --overlay: rgb(6 34 63 / .35);
+  --close-bg: #f1f5f9;
+  --close-bg-hover: #e2e8f0;
+  --dot-track: #c7d6ee;
+  --grad-1: #1E40AF;
+  --grad-2: #4f7fe0;
+  --grad-3: #8fb0ee;
+}
+
+/* ---------- dark theme ---------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page-bg: #0b1626;
+  --bg_light_primary: #0f1d31;
+  --surface: #13233a;
+  --surface-glass: rgb(19 35 58 / .75);
+  --border: #22344f;
+  --border-strong: #2e4466;
+  --text-color: #e6edf8;
+  --text-dark-color: #d3dfef;
+  --text-body: #b4c2d6;
+  --text-muted: #94a3b8;
+  --text-faint: #6b7f99;
+  --text-strong-list: #cbd5e1;
+  --primary-color: #8fb0ee;
+  --primary-soft: #5b84d6;
+  --subtitle-color: #8ea3c2;
+  --accent-soft: rgb(126 163 236 / .18);
+  --accent-softer: rgb(126 163 236 / .1);
+  --accent-border: rgb(126 163 236 / .22);
+  --tech-tag-bg: rgb(126 163 236 / .16);
+  --tech-tag-fg: #c7d8f8;
+  --meter-track: #1f3150;
+  --solid-bg: #dbe6fb;
+  --solid-bg-hover: #ffffff;
+  --solid-fg: #06223f;
+  --btn-border: #dbe6fb;
+  --header-glass: rgb(11 22 38 / .82);
+  --nav-pill-bg: rgb(19 35 58 / .6);
+  --nav-hover: rgb(126 163 236 / .18);
+  --hairline: rgb(255 255 255 / .1);
+  --shadow-rgb: 0 0 0;
+  --panel-from: #1a3157;
+  --panel-to: #0f1d31;
+  --name-color: #c7d8f8;
+  --blob-1: #1d3a6b;
+  --blob-2: #3b2a63;
+  --glow-core: rgb(126 163 236 / .28);
+  --success-fg: #86efac;
+  --success-bg: rgb(34 197 94 / .14);
+  --success-border: rgb(34 197 94 / .3);
+  --service-num: #1c2e4a;
+  --service-num-hover: #2a4166;
+  --banner-base: #13233a;
+  --banner-base-2: #0f1d31;
+  --overlay: rgb(0 0 0 / .55);
+  --close-bg: #1f3150;
+  --close-bg-hover: #2e4466;
+  --dot-track: #2e4466;
+  --grad-1: #7ea3ec;
+  --grad-2: #a9c2f3;
+  --grad-3: #dbe6fb;
 }
 
 
@@ -80,7 +186,7 @@ span {
   border-radius: .375rem .375rem 1.5rem;
   border-width: 2px;
   --tw-border-opacity: 1;
-  border-color: rgb(6 34 63 / var(--tw-border-opacity));
+  border-color: var(--btn-border);
   padding: .5rem 2.25rem;
   font-weight: 500;
 }
@@ -98,8 +204,8 @@ span {
 }
 
 .subtitle {
-  /* 3.5:1 on light backgrounds (WCAG AA for large text) */
-  color: #6b82a1;
+  /* >= 3:1 on both themes' backgrounds (WCAG AA for large text) */
+  color: var(--subtitle-color);
   font-family: Paprika;
   font-size: 2.25rem;
   line-height: 1.625;
@@ -115,7 +221,8 @@ h5 {
 }
 
 .tech-tag {
-  background-color: #cedef2;
+  background-color: var(--tech-tag-bg);
+  color: var(--tech-tag-fg);
 }
 
 .font-Poppins {
@@ -139,7 +246,7 @@ html {
 body {
   font-family: Poppins, sans-serif;
   color: var(--text-color);
-  background: #fff;
+  background: var(--page-bg);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -182,16 +289,16 @@ section[id] {
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px -10px rgb(6 34 63 / .45);
+  box-shadow: 0 10px 24px -10px rgb(var(--shadow-rgb) / .45);
 }
 
 .btn-solid {
-  background-color: var(--bg-dark_primary);
-  color: #fff;
+  background-color: var(--solid-bg);
+  color: var(--solid-fg);
 }
 
 .btn-solid:hover {
-  background-color: #0b3463;
+  background-color: var(--solid-bg-hover);
 }
 
 .btn-outline {
@@ -200,8 +307,8 @@ section[id] {
 }
 
 .btn-outline:hover {
-  background-color: var(--bg-dark_primary);
-  color: #fff;
+  background-color: var(--solid-bg);
+  color: var(--solid-fg);
 }
 
 .card-lift {
@@ -211,7 +318,7 @@ section[id] {
 .card-lift:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 40px -20px rgb(30 64 175 / .35);
-  border-color: #b6ccf5;
+  border-color: var(--primary-soft);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -260,4 +367,25 @@ section[id] {
   h2.subtitle {
     font-size: 2.25rem;
   }
+}
+
+/* Themed text helpers (unlayered, so they beat the global p/span colour rule; Tailwind v4 "!" classes don't) */
+.text-body {
+  color: var(--text-body);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-faint {
+  color: var(--text-faint);
+}
+
+/* Smooth colour change when the visitor switches theme (class added briefly by ThemeService) */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color .35s ease, color .35s ease, border-color .35s ease, fill .35s ease !important;
 }
